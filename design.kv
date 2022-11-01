@@ -1,0 +1,72 @@
+<LoginScreen>: # We give this name. It's a Screen
+    GridLayout:
+        cols: 1 # make sure to add cols field and don't rely on default
+        GridLayout:
+            cols: 1
+            Label: # an object that is inside the kv library and kv recognizes
+                text: "User Login"
+            TextInput:
+            id: username
+                hint_text: "Username"
+            TextInput:
+            id: password
+                hint_text: "Password"
+            Button:
+                text: "Login"
+                on_press: root.check_login(root.ids.username.text, root.ids.password.text)
+        
+        GridLayout:
+            cols: 2
+            Button:
+                text: "Forgot Password?"
+            Button:
+                text: "Sign up"
+                on_press: root.my_sign_up()
+
+<SignupScreen>: # Another Custom Screen
+    GridLayout:
+        cols:1
+        Label:
+            text: "Sign up to my Masterpiece"
+        TextInput:
+            id: username # id to refer to it
+            hint_text: "Username"
+        TextInput:
+            id: password
+            hint_text: "Password"
+        Button:
+            text: "Submit"
+            on_press: root.add_user(root.ids.username.text, root.ids.password.text) # refer to the above TexInput fields by ID
+
+<SignUpSuccessScreen>
+    GridLayout:
+        cols: 1
+        Label:
+            text: "Login Successful"
+        Button:
+            text: "Login Page"
+            on_press: root.redirect_to_login()
+
+<HomeScreen>
+    GridLayout:
+        cols: 1
+        Button:
+            text: "Logout"
+            on_press: root.logout()
+        Label:
+            text: "How do you feel?"
+        TextInput:
+            hint_text: "Things to Try: happy, sad, unloved ,..."
+        Button:
+            text: "Shazam!"
+        Label:
+            text: "" # Empty by default. we fill in case of wrong crendetials
+<RootWidget>:
+    LoginScreen:
+        name: "login_screen"
+    SignupScreen:
+        name: "signup_screen"
+    SignUpSuccessScreen:
+        name: "sign_up_success_screen"
+    HomeScreen:
+        name: "home_screen"
